@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Font Awesome Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <link rel="stylesheet" href="./css/style-quote.css">
+    <link rel="stylesheet" href="./css/utilities.css">
+
+    <title>Inventory MaNAGEMENT Form</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="top">
+            
+            <div class="date-line">
+                <p dropdown-zone>Date: 
+                    <span>Select Date...</span>
+                    <i class="fa-solid fa-chevron-down"></i> 
+                </p> 
+        
+                <div class="calendar disappear" id="calendar">
+
+                    <div class="month flex text-center">
+                        <i class="fas fa-angle-left prev"></i>
+                        <div class="date">
+                            <h2></h2>
+                        </div>
+                        <i class="fas fa-angle-right next"></i>
+                    </div>
+
+                    <div class="weekdays grid text-center">
+                        <div>Su</div>
+                        <div>Mo</div>
+                        <div>Tu</div>
+                        <div>We</div>
+                        <div>Th</div>
+                        <div>Fr</div>
+                        <div>Sa</div>
+                    </div>
+
+                    <div class="days grid text-center"></div>
+
+                </div>
+            </div>
+
+            <h2>Purchase Order</h2>
+
+            <div class="date-line">
+                <p dropdown-zone>Date: 
+                    <span>Select Date...</span>
+                    <i class="fa-solid fa-chevron-down"></i> 
+                </p> 
+        
+                <div class="calendar disappear" id="calendar">
+
+                    <div class="month flex text-center">
+                        <i class="fas fa-angle-left prev"></i>
+                        <div class="date">
+                            <h2></h2>
+                        </div>
+                        <i class="fas fa-angle-right next"></i>
+                    </div>
+
+                    <div class="weekdays grid text-center">
+                        <div>Su</div>
+                        <div>Mo</div>
+                        <div>Tu</div>
+                        <div>We</div>
+                        <div>Th</div>
+                        <div>Fr</div>
+                        <div>Sa</div>
+                    </div>
+
+                    <div class="days grid text-center"></div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="middle">
+            <div class="checkbox-area flex">
+                
+                <label for="quote" class="radio text-center">
+                    
+                    <input type="radio" name="myRadioField" class="radio_input" id="quote" checked>
+                    <div class="radio_radio"></div>
+                    Quote
+                </label>
+
+                <label for="Online" class="radio text-center">
+                    
+                    <input type="radio" name="myRadioField" class="radio_input" id="Online">
+                    <div class="radio_radio"></div>
+                    Online 
+                </label>
+
+                <label for="Local" class="radio text-center">
+                    
+                    <input type="radio" name="myRadioField" class="radio_input" id="Local">
+                    <div class="radio_radio"></div>
+                    Local
+                </label>
+
+                <label for="International" class="radio text-center">
+                    
+                    <input type="radio" name="myRadioField" class="radio_input" id="International">
+                    <div class="radio_radio"></div>
+                    Intl. 
+                </label>
+
+            </div>
+                <div class="progress-container flex text-center">
+                    <div class="progress" id="progress"></div>
+                        <div class="circle">
+                            1
+                        </div>
+                        <div class="circle ">
+                            2
+                        </div>
+                        <div class="circle ">
+                            3
+                        </div>
+                        <div class="circle ">
+                            4
+                        </div>
+                </div>
+                <!-- <ul id="progress-bar" class="progressbar">
+                    <li class="active">Details</li>
+                    <li>Address</li>
+                    <li>add friends</li>
+                    <li>Confirm</li>
+                </ul> -->
+        </div>
+        <form action="">
+            <div class="bottom">
+                <div class="form_control"></div>
+                <div class="form_control"></div>
+                <div class="form_control"></div>
+                <div class="form_control"></div>
+            </div>
+            <!-- <button class="btn">Submit</button> -->
+        </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="module" src="./js/script.js"></script>
+</body>
+</html>
