@@ -209,6 +209,5 @@ circles.forEach((circle , index) => {
     circle.classList.add('active')
     circle.innerHTML = `<i class="fa-regular fa-circle-check"></i>`
     
-    // console.log(e.target.previousElementSibling.classList.contains("acitve"))
   })
 })
