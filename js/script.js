@@ -192,22 +192,67 @@ document.querySelectorAll(".next").forEach(next => {
 //Progress Bar
 const progress = document.querySelector("#progress");
 const circles = document.querySelectorAll(".circle");
+const actives = document.querySelectorAll(".active")
 
-let currentActive = 1; 
+function previousElementSibling(element , m){
+  const prevSibling = [];
+  while(m > 0){
+    let prev = element.previousElementSibling;
+    prevSibling.push(prev)
+    m--;
+    element = prev
+  }
+  return prevSibling
+}
 
-// const update = () => {
+function nextElementSibling(element , m ){
+  const nextSibling = [];
+    while(element){
+    let next = element.nextElementSibling;
+    nextSibling.push(next)
+    element = next
+  }
+  console.log(nextSibling)
+  return nextSibling
+}
 
-//   const actives = document.querySelectorAll(".active");
+// circles.forEach((circle , index) => {
+//   circle.addEventListener("click" , (e) => {
+//     e.preventDefault();
+//     const actives = document.querySelectorAll(".active")
 
-//   progress.style.width = ((actives.length - 1)/(circles.length - 1))*100 + "%";
-// }
-
-circles.forEach((circle , index) => {
-  circle.addEventListener("click" , (e) => {
-    e.preventDefault();
-    // console.log(e.target.parentElement.matches('.circle'))
-    circle.classList.add('active')
-    circle.innerHTML = `<i class="fa-regular fa-circle-check"></i>`
     
-  })
-})
+//     // Putting  a limit to progress width
+//     let progress_length = ((index+1)/(circles.length-1))*100;
+        
+//     if(index === 0){
+//       circle.classList.add('active')
+//       // circle.classList.remove('incomplete')
+//       circle.innerHTML = `<i class="fa-regular fa-circle-check"></i>`
+//       progress.style.width = ((index+1)/(circles.length - 1))*100 + "%";
+//       circle.nextElementSibling.classList.add("in-progress")
+
+//     } else {
+//       let m = index
+
+//       const allPrevSiblingElement = previousElementSibling(circle , m)
+//       const allNextSiblingElement = nextElementSibling(circle , m)
+      
+//       for( let elem of allPrevSiblingElement){
+//         if(!elem.classList.contains("incomplete") && !elem.classList.contains("in-progress")) {
+//           circle.classList.add('active')
+//           circle.classList.remove('incomplete')
+//           circle.classList.remove("in-progress")
+//           circle.innerHTML = `<i class="fa-regular fa-circle-check"></i>`
+
+//           if(progress_length <= 100) {  //Limiting Length
+//             progress.style.width = ((index+1)/(circles.length - 1))*100 + "%";
+//             // circle.nextElementSibling.classList.add("in-progress")
+//           }
+//         }
+//         else return
+//       }
+//     }
+    
+//   })
+// })

@@ -116,37 +116,70 @@
                 </label>
 
             </div>
-                <div class="progress-container flex text-center">
+                <!-- <div class="progress-container flex text-center">
                     <div class="progress" id="progress"></div>
-                        <div class="circle">
-                            1
-                        </div>
-                        <div class="circle ">
-                            2
-                        </div>
-                        <div class="circle ">
-                            3
-                        </div>
-                        <div class="circle ">
-                            4
-                        </div>
-                </div>
+                    <div class="circle incomplete flex">
+                        1
+                    </div>
+                    <div class="circle incomplete flex">
+                        2
+                    </div>
+                    <div class="circle incomplete flex">
+                        3
+                    </div>
+                    <div class="circle incomplete flex">
+                        4
+                    </div>
+                </div> -->
+                <!-- <li class="active">Details</li> -->
                 <!-- <ul id="progress-bar" class="progressbar">
-                    <li class="active">Details</li>
                     <li>Address</li>
                     <li>add friends</li>
                     <li>Confirm</li>
                 </ul> -->
         </div>
-        <form action="">
-            <div class="bottom">
-                <div class="form_control"></div>
-                <div class="form_control"></div>
-                <div class="form_control"></div>
-                <div class="form_control"></div>
-            </div>
+
+        <div class="bottom"></div>
+            <form action="">
+            
+                <div class="form_control">
+                    <label for="Po-No">Purchase Order No.</label>
+                    <input type="text" id="PO-No" placeholder="Purchase Order No." required>
+                </div>
+
+                <div class="form_control">
+                    <label for="Vendor">Vendor Details</label>
+                    <input type="text" id="Vendor" placeholder="Vendor" required>
+                </div>
+
+                <div class="form_control">
+                    <label for="Item-Name">Item Name</label>
+                    <input type="text" id="Item-Name" placeholder="Item Name" required>
+                </div>
+
+                <div class="form_control">
+                    
+                    <div class="control">
+                        <label for="Qty">Qty</label>
+                        <input type="number" id="Qty" required>
+                    </div>
+
+                    <div class="control">
+                        <label for="Price">Price</label>
+                        <input type="number" id="Price" required>
+                    </div>
+
+                    <div class="control">
+                        <label class="custom-file-upload">
+                            <input type="file" required>
+                            <i class="fa fa-cloud-upload"></i>Upload
+                        </label>
+                    </div>
+
+                </div>
             <!-- <button class="btn">Submit</button> -->
         </form>
+        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

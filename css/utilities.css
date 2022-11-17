@@ -249,15 +249,15 @@ border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 /*Progress bar*/
-.progress-container{
+/* .progress-container{
     margin: 20px 30px;
     position: relative;
     justify-content: space-between;
-    /* padding: 0 50px; */
+    
     max-width: 100%;
     width: 600px;
     margin: auto;
-    /* z-index: 9; */
+    
 }
 .progress-container::before{
     content: "";
@@ -271,11 +271,11 @@ border: 1px solid rgba(255, 255, 255, 0.2);
     z-index: 0;
 }
 .progress{
-    /* background-color: var(--success); */
+    
     background-color: black;
     position: absolute;
     top: 50%;
-    /* left: 5%; */
+    
     left: 0;
     transform: translateY(-50%);
     height: 4px;
@@ -284,22 +284,41 @@ border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .circle{
-    background-color: var(--incomplete);
+    
     color: #fff;
     border-radius: 50%;
     height: 30px;
     width: 30px;
-    border: 2px solid var(--incomplete);
+    
     z-index: 2;
     transition: 0.6 ease-in;
 }
-
-.circle.active{
+.incomplete{
+    background-color: var(--incomplete); 
+    border: 2px solid var(--incomplete);
+}
+.active{
     border-color: var(--success);
     background-color: var(--success);
+}
+.in-progress{
+    border-color: var(--in-progress);
+    background-color: var(--in-progress);
 }
 
 .circle:hover{
     cursor: pointer;
     transform: scale(1.2);
+} */
+
+/*Forms */
+/* Upload Button */
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
 }
