@@ -65,7 +65,7 @@ date_parts.forEach(d => {
       day = e.target.parentElement.nextElementSibling.children.item(2)
       
       // date.setMonth(date.getMonth());
-      console.log(date)
+      // console.log(date)
       renderCalendar(month , day);
     }
     // calendar.classList.toggle('disappear');
@@ -81,9 +81,9 @@ days_section.forEach(date => {
       // console.log(e.target.closest('.date-line').children.item(0).children.item(0))
       const date_button = e.target.matches(".date-button")
       if(!date_button){
-        console.log(1)
+        // console.log(1)
       } else{
-        console.log(2)
+        // console.log(2)
         
         let month_year = e.target.closest(".calendar").children.item(0).children.item(1).children.item(0).innerText.split(" ")
         let selected_Date = e.target.innerText;
@@ -99,7 +99,6 @@ days_section.forEach(date => {
 })
 
 //Calendar Rendar
-
 const renderCalendar = (date_month_year , date_day) => {
   date.setDate(1); //Date Starts from zero so it needs to be set to 1
   // console.log(date_month_year)
@@ -130,10 +129,6 @@ const renderCalendar = (date_month_year , date_day) => {
 
   const nextDays = 7 - lastDayIndex - 1;
 
-  
-  // document.querySelectorAll(".date h2").forEach(i => {
-    // i.innerText = `${months[date.getMonth()]} ${date.getFullYear()}`; 
-  // })
   date_month_year.innerText = `${months[date.getMonth()]} ${date.getFullYear()}`;
   let days = "";
 
@@ -256,3 +251,109 @@ function nextElementSibling(element , m ){
     
 //   })
 // })
+
+//Outside Form
+const date_left = document.querySelector('#date-left span')
+const date_right = document.querySelector('#date-right span')
+const check_box_area = document.querySelector("#checkbox-area")
+//Upload Button
+let selected_radio;
+
+//Checkboxes
+check_box_area.addEventListener("click" , (e) => {
+  // e.preventDefault();
+  e.stopPropagation();
+  let arr = [];
+  // if (e.target.closest(".quote") || e.target.closest(".Online") || e.target.closest(".local") || e.target.closest(".Intl")) {
+  // console.log(e.target)
+  if(e.target.matches("label")){
+    // console.log(e.target.parentElement.className);
+    let string = e.target.className
+    arr = string.match(/\w+/g)
+    // console.log(arr)
+    // e.preventDefault()
+  } else if (e.target.closest("label")){
+    let string = e.target.parentElement.className
+    arr = string.match(/\w+/g)
+  }
+  // console.log(arr[3])
+  selected_radio = arr[3]
+})
+
+//Inside Form
+const upload = document.querySelector("#hiddenInput")
+
+upload.addEventListener("change", (e) => {
+  // console.log(hiddenInput.files)
+  e.preventDefault();
+  const fileNameList = Array.from(upload.files).map(function (file) {
+    return file.name;
+  });
+  const span_message = e.target.parentElement.children.item(2)
+  if (fileNameList.length > 0) {
+    span_message.innerText = fileNameList;
+    span_message.parentElement.style.backgroundColor = `#58D68D`;
+  } else {
+    span_message.innerText = `Add File`
+    span_message.parentElement.style.backgroundColor = `#2196F3`;
+  }
+})
+//Form Itself
+const form = document.querySelector("#po-form")
+//Form Check for upload
+
+const postData = async (url , payload) => {
+  try{
+    const res = await fetch(url , {
+      method: 'POST',
+      // mode:'cors',
+      // headers:{
+      //   'Content-type':'application/json'
+      // },
+      body:payload
+    })
+    const data = await res.json();
+    
+  } catch(err){
+    console.log(err)
+  }
+}
+function checkdates(right , left){
+  if (left === 'Select Date...' || right === 'Select Date ...') {
+    alert("Select Dates")
+    return false
+  }
+  return true
+}
+
+function check_order_type(radio){
+  
+    if(typeof radio === "undefined"){
+      console.log(10)
+      alert('Select Order Type')
+      return false
+    }
+    return true
+}
+// let url = "http://localhost:3000/patient-register";
+form.addEventListener("submit" , (e) => {
+  e.preventDefault();
+  // console.log(selected_radio)
+  const formdata = new FormData(form)
+
+  let date_checker = checkdates(date_left.innerText , date_right.innerText)
+  let order_type_checker = check_order_type(selected_radio)
+
+  if(date_checker && order_type_checker){
+    formdata.append('issue_date', date_left.innerText)
+    formdata.append('due_date', date_right.innerText)
+    formdata.append('type', selected_radio)
+    // formdata.append("P-O" , upload.files[0])
+
+    const url = "http://localhost:3000/purchase-order"
+
+    const result = postData(url, formdata)
+  }
+  
+})
+
