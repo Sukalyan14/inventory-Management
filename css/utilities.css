@@ -12,6 +12,7 @@
     --green-for-calendar:#a3e4d7;
     --radio-button-border:#C0C0C0;
     --radio-button-checked:#29b6f6;
+    --input-placeholder-color:#95a5a6;
 }
 
 *{
@@ -30,15 +31,36 @@ body{
     max-width: 100vw;
     height: 100vh;
 }
+/*Input scroll removal */
+input[type='number'] {
+    -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
 
 .wrapper{
-    width: 900px;
+    width: 800px;
     background: var(--wrapper-bg);
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
     border-radius: 7px;
-    padding: 20px 26px;
+    padding: 20px 30px;
+    position: relative;
+}
+.fa-xmark{
+    position: absolute;
+    left: 96%;
+    transition: transform 0.2s ease-in-out;
+}
+.fa-xmark:hover{
+    transform: scale(1.4);
 }
 
+.poof{
+    display: none;
+}
 .text-center{
     text-align: center;
 }
@@ -65,6 +87,7 @@ body{
     color: var(--text-color);
     display: flex;
     justify-content: space-between;
+    margin-top: 10px;
 }
 
 .top > h2{
@@ -72,15 +95,24 @@ body{
     letter-spacing: 2px;
     color: #5D6D7E;
     font-weight: 600;
-    padding-top: 8px;
+    margin-bottom: 10px;
+    /* padding-bot: 8px; */
 }
 
 /*cALENDAR*/
 .date-line{
     width: 180px;
     display: flex;
+    /* justify-content: center; */
     position: relative;
     user-select: none;
+    padding-top: 8px;
+}
+.flex-start{
+    justify-content: flex-start;
+}
+.flex-end{
+    justify-content: flex-end;
 }
 .date-line p i{
     padding-top: 20px;
@@ -107,18 +139,18 @@ body{
     /* height: 500px; */
     z-index: 9;
 /* From https://css.glass */
-background: rgba(255, 255, 255, 0.12);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(5.8px);
--webkit-backdrop-filter: blur(5.8px);
-border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.47);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(14.7px);
+    -webkit-backdrop-filter: blur(14.7px);
+    border: 1px solid rgba(255, 255, 255, 0.39);
     display: flex;
     flex-direction: column;
     font-size: 0.8rem;
     transform:  opacity 150ms ease-in-out;
     position: absolute;
-    top: calc(100% + .20rem);
+    top: calc(100% - .5rem);
     left: -10px;
 }
 
@@ -210,6 +242,7 @@ border: 1px solid rgba(255, 255, 255, 0.2);
 /* Middle */
 .middle{
     margin: 12px 0;
+    border-bottom: 2px solid #d9d9d9;
 }
 
 /* CheckBox */
@@ -312,13 +345,29 @@ border: 1px solid rgba(255, 255, 255, 0.2);
 } */
 
 /*Forms */
-/* Upload Button */
-input[type="file"] {
-    display: none;
-}
-.custom-file-upload {
+
+/*btn*/
+.btn{
+    width: 120px;
+    font-size: 16px;
     border: 1px solid #ccc;
-    display: inline-block;
-    padding: 6px 12px;
+    padding: 4px 12px;
+    margin: 10px;
     cursor: pointer;
+    height: 50px;
+    border: 0.89px  solid var(--input-field-border);
+    border-radius: 9px;
+    outline: none;
+    background-color: var(--button-color);
+    color: #fff;
+    transition: tranform 0.5s ease-in;
+}
+
+.btn:hover{
+    transform: scale(1.1);
+}
+
+/*Form Switches*/
+.disable-appearance{
+    display: none;
 }

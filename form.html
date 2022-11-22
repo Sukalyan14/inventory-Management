@@ -17,15 +17,16 @@
 </head>
 <body>
     <div class="wrapper">
+        <i class="fa-solid fa-xmark" id="form-toggler"></i>
         <div class="top">
             
-            <div class="date-line">
-                <p dropdown-zone>Date: 
+            <div class="date-line flex-start">
+                <p dropdown-zone id="date-left">Date:
                     <span>Select Date...</span>
                     <i class="fa-solid fa-chevron-down"></i> 
                 </p> 
         
-                <div class="calendar disappear" id="calendar">
+                <div class="calendar disappear" >
 
                     <div class="month flex text-center">
                         <i class="fas fa-angle-left prev"></i>
@@ -52,13 +53,13 @@
 
             <h2>Purchase Order</h2>
 
-            <div class="date-line">
-                <p dropdown-zone>Date: 
+            <div class="date-line flex-end">
+                <p dropdown-zone id="date-right">Due:
                     <span>Select Date...</span>
                     <i class="fa-solid fa-chevron-down"></i> 
                 </p> 
         
-                <div class="calendar disappear" id="calendar">
+                <div class="calendar disappear" >
 
                     <div class="month flex text-center">
                         <i class="fas fa-angle-left prev"></i>
@@ -85,30 +86,31 @@
 
         </div>
         <div class="middle">
-            <div class="checkbox-area flex">
+            <div class="checkbox-area flex" id="checkbox-area">
                 
-                <label for="quote" class="radio text-center">
+                <label for="quote" class="radio text-center quote">
                     
-                    <input type="radio" name="myRadioField" class="radio_input" id="quote" checked>
+                    <input type="radio" name="myRadioField" class="radio_input" id="quote">
                     <div class="radio_radio"></div>
                     Quote
+                    <!-- <span>Quote</span> -->
                 </label>
 
-                <label for="Online" class="radio text-center">
+                <label for="Online" class="radio text-center Online">
                     
                     <input type="radio" name="myRadioField" class="radio_input" id="Online">
                     <div class="radio_radio"></div>
                     Online 
                 </label>
 
-                <label for="Local" class="radio text-center">
+                <label for="local" class="radio text-center local">
                     
-                    <input type="radio" name="myRadioField" class="radio_input" id="Local">
+                    <input type="radio" name="myRadioField" class="radio_input" id="local">
                     <div class="radio_radio"></div>
                     Local
                 </label>
 
-                <label for="International" class="radio text-center">
+                <label for="International" class="radio text-center Intl">
                     
                     <input type="radio" name="myRadioField" class="radio_input" id="International">
                     <div class="radio_radio"></div>
@@ -139,47 +141,50 @@
                 </ul> -->
         </div>
 
-        <div class="bottom"></div>
-            <form action="">
             
+        <form action="" id="po-form" enctype="multipart/form-data">
+            <div class="bottom grid">
                 <div class="form_control">
                     <label for="Po-No">Purchase Order No.</label>
-                    <input type="text" id="PO-No" placeholder="Purchase Order No." required>
+                    <input type="text" id="PO-No" name="po_num" placeholder="Purchase Order No." required>
                 </div>
 
                 <div class="form_control">
                     <label for="Vendor">Vendor Details</label>
-                    <input type="text" id="Vendor" placeholder="Vendor" required>
+                    <input type="text" id="Vendor" name="vendor" placeholder="Vendor" required>
                 </div>
 
                 <div class="form_control">
                     <label for="Item-Name">Item Name</label>
-                    <input type="text" id="Item-Name" placeholder="Item Name" required>
+                    <input type="text" id="Item-Name" name="item" placeholder="Item Name" required>
                 </div>
 
-                <div class="form_control">
+                <div class="form_control grid">
                     
                     <div class="control">
                         <label for="Qty">Qty</label>
-                        <input type="number" id="Qty" required>
+                        <input type="number" id="Qty" name="qty" placeholder="Qty" min="0" required>
                     </div>
 
                     <div class="control">
                         <label for="Price">Price</label>
-                        <input type="number" id="Price" required>
+                        <input type="number" id="Price" name="price" placeholder="Price" min="0" required>
                     </div>
 
                     <div class="control">
-                        <label class="custom-file-upload">
-                            <input type="file" required>
-                            <i class="fa fa-cloud-upload"></i>Upload
+                        <span>Upload</span>
+                        <label class="custom-file-upload flex" id="upload-btn">
+                            <input type="file" id="hiddenInput">
+                            <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                            <span>Add File</span>
                         </label>
                     </div>
 
                 </div>
-            <!-- <button class="btn">Submit</button> -->
+            </div>
+            <button class="btn">Submit</button>
         </form>
-        </div>
+        
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
