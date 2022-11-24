@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    
+    <link rel="stylesheet" href="./css/utilities.css">
+    <title>Invenntory Management</title>
+</head>
+<body>
+    <section class="container flex">
+        
+        <div class="logo text-center">
+            <h2>Inventory Management</h2>
+        </div>
+
+        <button class="btn" id="PO-form">P.O. Form</button>
+
+    </section>
+
+    <section class="container flex">
+        
+        <div class="tabs flex text-center">
+
+            <div class="tab">
+                <h3>Quote</h3>
+                <span>156</span>
+                <div class="circle "></div>
+            </div>
+
+            <div class="tab">
+                <h3>Online</h3>
+                <span>156</span>
+                <div class="circle "></div>
+            </div>
+
+            <div class="tab">
+                <h3>Local</h3>
+                <span>156</span>
+                <div class="circle "></div>
+            </div>
+
+            <div class="tab">
+                <h3>International</h3>
+                <span>156</span>
+                <div class="circle "></div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="container">
+        <div class="head flex">
+            <h2 class="align-left">Orders</h2>
+            <div class="search-and-refresh-and-sort">
+                <i class="fa-solid fa-arrows-rotate"></i>
+                <!-- <i class='bx bx-refresh bx-spin'></i> -->
+                <i class="fa-solid fa-filter"></i>
+                
+                <div class="search-bar">
+                    <input type="search" placeholder="Search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+            </div>
+            
+        </div>
+        
+        <table>
+            <tr>
+                <th>Serial No.</th>
+                <th>Purchase Order No.</th>
+                <th>Item Name</th>
+                <th>Vendor</th>
+                <th>Type of Order</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Date of Issue</th>
+                <th>Due Date</th>
+           </tr>
+
+           <!-- <tr>
+            <td>1</td>
+            <td>741258963</td>
+            <td>Something</td>
+            <td>Someone</td>
+            <td>Quote</td>
+            <td>75</td>
+            <td>96325</td>
+            <td>7/8/22</td>
+            <td>3/9/22</td>
+           </tr> -->
+        </table>
+    </section>
+    
+</body>
+</html>

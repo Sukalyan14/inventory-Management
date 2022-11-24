@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
 :root{
     --wrapper-bg:rgba(253, 237, 236, 1);
     --success:#58D68D;
@@ -25,13 +26,31 @@
 }
 
 body{
-    display: grid;
+    /* display: grid;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
     max-width: 100vw;
     height: 100vh;
+    background: #e3f2fd;
 }
 /*Input scroll removal */
+input {
+    /* max-width: 370px; */
+    width: 100%;
+    margin: 10px 0;
+    height: 50px;
+    padding: 4px 10px;
+    font-size: 16px;
+    border: 0.89px solid var(--input-field-border);
+    border-radius: 9px;
+    outline: none;
+    background-color: var(--input-field-color);
+}
+
+.input:placeholder-shown {
+    color: var(--input-placeholder-color);
+}
+
 input[type='number'] {
     -moz-appearance: textfield;
 }
@@ -40,7 +59,121 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
+input[type=search]::-ms-clear {
+    display: none;
+    width: 0;
+    height: 0;
+}
 
+input[type=search]::-ms-reveal {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+/* clears the ‘X’ from Chrome */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+    display: none;
+}
+.poof {
+    display: none;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100%; */
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    /* height: 100%; */
+}
+
+.block {
+    display: block;
+}
+.align-left{
+    text-align: left;
+}
+
+/*Main Page*/
+.container{
+    max-width: 1800px;
+    padding: 10px 40px;
+    margin: auto;
+}
+.container.flex{
+    justify-content: space-between;
+}
+
+.logo{
+    width: 320px;
+    padding: 0 3.2rem;
+}
+.logo > h2{
+    font-family: 'Dancing Script',
+    cursive;
+    line-height: 50px;
+    font-size: 2.6rem;
+    letter-spacing: 4px;
+}
+
+.tabs{
+    width: 100%;
+    margin: auto;
+}
+.tabs.flex{
+    justify-content: space-evenly;
+}
+.tab{
+    width: 320px;
+    height: 160px;
+    padding: 0.9rem 2rem;
+    border-radius: 17px;
+    background: #ffffff;
+    position: relative;
+/* box-shadow: 22px 22px 44px #e0e0e0, 
+ -22px -22px 44px #ffffff; */
+}
+.tab h3{
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-align: left;
+}
+.tab span{
+    padding: 10px 0;
+    letter-spacing: 2px;
+    font-size: 2.4rem;
+}
+.circle{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    /* background-color: #58D68D; */
+    position: absolute;
+    top: 80%;
+    left: 90%;
+}
+
+.circle-in-focus{
+    background-color: #58D68D;
+}
+/*Form*/
 .wrapper{
     width: 800px;
     background: var(--wrapper-bg);
@@ -58,31 +191,6 @@ input::-webkit-inner-spin-button {
     transform: scale(1.4);
 }
 
-.poof{
-    display: none;
-}
-.text-center{
-    text-align: center;
-}
-.flex{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* height: 100%; */
-}
-
-.grid{
-    display: grid;
-    grid-template-columns: repeat(2 , 1fr);
-    grid-template-rows: auto;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
-    /* height: 100%; */
-}
-.block{
-    display: block;
-}
 .top{
     color: var(--text-color);
     display: flex;
@@ -370,4 +478,54 @@ input::-webkit-inner-spin-button {
 /*Form Switches*/
 .disable-appearance{
     display: none;
+}
+
+/*Table part*/
+.head{
+    width: 100%;
+    font-size: 1.8rem;
+    padding: 20px 40px;
+}
+.head.flex{
+    justify-content: space-between;
+}
+
+.search-and-refresh-and-sort{
+    display: grid;
+    grid-template-columns: 30px 30px 200px;
+    align-items: center;
+    grid-template-rows: auto;
+    column-gap: 40px;
+}
+.search-and-refresh-and-sort > i:hover{
+    transform: scale(1.1);
+}
+
+.search-bar{
+    /* background-color: #fff; */
+    /* border-radius: 10px; */
+    position: relative;
+    
+}
+.search-bar input{
+    height: 50px;
+    border: none;
+    outline: none;
+    margin: 0;
+    background: #Fff;
+}
+
+.search-bar i{
+    font-size: 1.4rem;
+    color: var(--input-placeholder-color);
+    position: absolute;
+    top: 30%;
+    left: 80%;
+}
+/*Table*/
+table{
+    width: 100%;
+    padding: 20px 10px;
+    background-color: #fff;
+    border-radius: 20px;
 }
