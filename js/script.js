@@ -77,11 +77,15 @@ date_parts.forEach(d => {
 days_section.forEach(date => {
   date.addEventListener('click' , (e)=> {
       e.preventDefault();
-      // console.log(e.target.closest('.calendar'))
-      // console.log(e.target.closest('.date-line').children.item(0).children.item(0))
+      // console.log(e.target)
       const date_button = e.target.matches(".date-button")
-      if(!date_button){
+      // const d  = e.target.classList.contains('next-date')
+    // console.log(c)
+      // if (!date_button || e.target.classList.contains('prev-date') || e.target.classList.contains('next-date')) {
+      if(!date_button || e.target.className.includes('prev-date') || e.target.className.includes('next-date')){
+        //Checking if date in present active calendar is shown and prevent all display bug
         // console.log(1)
+        return;
       } else{
         // console.log(2)
         
@@ -134,7 +138,7 @@ const renderCalendar = (date_month_year , date_day) => {
 
   for (let x = firstDayIndex; x > 0; x--) {
     // days += `<div class="prev-date"><span class="hover">${prevLastDay - x + 1}</span></div>`;
-    days += `<span class="prev-date date-button">${prevLastDay - x + 1}</span>`;
+    days += `<span class="prev-date">${prevLastDay - x + 1}</span>`;
   }
 
   for (let i = 1; i <= lastDay; i++) {
@@ -149,7 +153,7 @@ const renderCalendar = (date_month_year , date_day) => {
   
   for (let j = 1; j <= nextDays; j++) {
     // days += `<div class="next-date"><span class="hover">${j}</span></div>`;
-    days += `<span class="next-date date-button">${j}</span>`;
+    days += `<span class="next-date">${j}</span>`;
   }
   // days_section.forEach(day => {
   //   day.innerHTML = days;
@@ -256,6 +260,7 @@ function nextElementSibling(element , m ){
 const date_left = document.querySelector('#date-left span')
 const date_right = document.querySelector('#date-right span')
 const check_box_area = document.querySelector("#checkbox-area")
+
 //Upload Button
 let selected_radio;
 
@@ -269,8 +274,7 @@ check_box_area.addEventListener("click" , (e) => {
   if(e.target.matches("label")){
     // console.log(e.target.parentElement.className);
     let string = e.target.className
-    arr = string.match(/\w+/g)
-    // console.log(arr)
+    arr = string.match(/\w+/g)  //Checkiong for gaps between string and picking each word
     // e.preventDefault()
   } else if (e.target.closest("label")){
     let string = e.target.parentElement.className
@@ -318,21 +322,70 @@ const postData = async (url , payload) => {
     console.log(err)
   }
 }
-function checkdates(right , left){
-  if (left === 'Select Date...' || right === 'Select Date ...') {
-    alert("Select Dates")
-    return false
+
+function error_message(element, message , flag) {
+  if (flag == 1) {
+    element.innerText = message
+    element.style.display = 'block'
+  } else {
+    element.style.display = 'none'
   }
-  return true
+}
+
+function checkdates(){
+  
+  if (date_left.innerText === 'Select Date...'){
+    console.log(1)
+      error_message(date_left.nextElementSibling.nextElementSibling, "Pls Select the date", 1)
+      return false
+  } else if (date_right.innerText === 'Select Date...'){
+    console.log(2)
+      error_message(date_right.nextElementSibling.nextElementSibling, "Pls Select the date", 1)
+      return false
+  } else{
+    console.log(3)
+    let date_checker_2 = checkdates_2(date_left.innerText, date_right.innerText)
+    if(date_checker_2){
+          error_message(date_left.nextElementSibling.nextElementSibling, " ", 0)
+          error_message(date_right.nextElementSibling.nextElementSibling, " ", 0)
+          return true
+    } else {
+      return false
+    }
+  }
+
+  
+} 
+
+function checkdates_2(left, right) {
+  console.log("within Data Checker")
+  let dateParts = {
+    left:left.split("/"),
+    right:right.split("/")
+  } //Default dateObjec Format is YY/MM/DD
+    
+  const x = new Date(+dateParts.left[2], dateParts.left[1] - 1, +dateParts.left[0]);
+  const y = new Date(+dateParts.right[2], dateParts.right[1] - 1, +dateParts.right[0]);
+  console.log(x , y)
+  if(x > y) {
+    console.log(4)
+    date_error_message(date_left.nextElementSibling.nextElementSibling, "Issue Date is after Due date", 1)
+    date_error_message(date_right.nextElementSibling.nextElementSibling, "Due Date is before Due date", 1)
+    return false
+  } else {
+    return true 
+  }
 }
 
 function check_order_type(radio){
-  
+  console.log(check_box_area.nextElementSibling)
     if(typeof radio === "undefined"){
-      console.log(10)
-      alert('Select Order Type')
+      // console.log(10)
+      error_message(check_box_area.nextElementSibling , "Please Select Order Type" , 1)
+      // alert('Select Order Type')
       return false
     }
+    error_message(check_box_area.nextElementSibling, " ", 0)
     return true
 }
 // let url = "http://localhost:3000/patient-register";
@@ -341,7 +394,8 @@ form.addEventListener("submit" , (e) => {
   // console.log(selected_radio)
   const formdata = new FormData(form)
 
-  let date_checker = checkdates(date_left.innerText , date_right.innerText)
+  let date_checker = checkdates();
+  console.log(date_checker)
   let order_type_checker = check_order_type(selected_radio)
 
   if(date_checker && order_type_checker){

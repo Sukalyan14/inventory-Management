@@ -10,7 +10,7 @@
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
-    <link rel="stylesheet" href="./css/style-quote.css">
+    <link rel="stylesheet" href="./css/form.css">
     <link rel="stylesheet" href="./css/utilities.css">
 
     <title>Inventory MaNAGEMENT Form</title>
@@ -23,7 +23,8 @@
             <div class="date-line flex-start">
                 <p dropdown-zone id="date-left">Date:
                     <span>Select Date...</span>
-                    <i class="fa-solid fa-chevron-down"></i> 
+                    <i class="fa-solid fa-chevron-down"></i>
+                    <span class="error-message">Error</span>
                 </p> 
         
                 <div class="calendar disappear" >
@@ -57,6 +58,7 @@
                 <p dropdown-zone id="date-right">Due:
                     <span>Select Date...</span>
                     <i class="fa-solid fa-chevron-down"></i> 
+                    <span class="error-message">Error</span>
                 </p> 
         
                 <div class="calendar disappear" >
@@ -85,7 +87,7 @@
             </div>
 
         </div>
-        <div class="middle">
+        <div class="middle text-center">
             <div class="checkbox-area flex" id="checkbox-area">
                 
                 <label for="quote" class="radio text-center quote">
@@ -116,29 +118,8 @@
                     <div class="radio_radio"></div>
                     Intl. 
                 </label>
-
             </div>
-                <!-- <div class="progress-container flex text-center">
-                    <div class="progress" id="progress"></div>
-                    <div class="circle incomplete flex">
-                        1
-                    </div>
-                    <div class="circle incomplete flex">
-                        2
-                    </div>
-                    <div class="circle incomplete flex">
-                        3
-                    </div>
-                    <div class="circle incomplete flex">
-                        4
-                    </div>
-                </div> -->
-                <!-- <li class="active">Details</li> -->
-                <!-- <ul id="progress-bar" class="progressbar">
-                    <li>Address</li>
-                    <li>add friends</li>
-                    <li>Confirm</li>
-                </ul> -->
+            <span class="error-message">Error</span>
         </div>
 
             
