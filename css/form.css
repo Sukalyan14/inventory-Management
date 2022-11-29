@@ -1,75 +1,72 @@
-.bottom.grid{
-    row-gap: 0px;
-    column-gap: 20px;
-}
-.bottom > label{
-    display: block;
-    /* max-width: 370px; */
-    padding-left: 10px;
-    /* height: 50px; */
-}
-input{
+/*Input scroll removal */
+input {
     /* max-width: 370px; */
     width: 100%;
     margin: 10px 0;
     height: 50px;
     padding: 4px 10px;
     font-size: 16px;
-    border: 0.89px  solid var(--input-field-border);
+    border: 0.89px solid var(--input-field-border);
     border-radius: 9px;
     outline: none;
     background-color: var(--input-field-color);
 }
-.input:placeholder-shown{
+
+.input:placeholder-shown {
     color: var(--input-placeholder-color);
 }
-.form_control{
-    padding: 10px;
-    justify-content: space-between;
+
+input[type='number'] {
+    -moz-appearance: textfield;
 }
-.form_control.grid{
-    grid-template-columns: 100px 100px 130px;
-    justify-content: space-between;
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
 }
-/* Upload Button */
-.control > span{
-    padding-left: 10px;
-}
-input[type="file"] {
+
+input[type=search]::-ms-clear {
     display: none;
+    width: 0;
+    height: 0;
 }
-.custom-file-upload {
-    /* display: inline-block; */
-    padding: 4px 10px;
-    margin: 10px 0;
-    cursor: pointer;
-    height: 50px;
-    border: 0.89px  solid var(--input-field-border);
-    border-radius: 9px;
-    outline: none;
-    background-color: var(--button-color);
-    color: #fff;
+
+input[type=search]::-ms-reveal {
+    display: none;
+    width: 0;
+    height: 0;
 }
-.custom-file-upload span{
-    height: 100%;
-    padding-top: 0.56rem;
-    overflow: hidden;
-    flex-wrap: nowrap;
-}
-.custom-file-upload i{
-    margin-right: 10px;
+
+/* clears the ‘X’ from Chrome */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+    display: none;
 }
 
 /*Form*/
 .wrapper {
+    position: absolute;
     width: 800px;
     background: var(--wrapper-bg);
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
     border-radius: 7px;
     padding: 20px 30px;
-    position: relative;
+    z-index: 9;
+    /* position: relative; */
+    top: -50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.5s ease;
 }
 
+.wrapper-appear{
+    top: 50%;
+    /* top: -50%; */
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 .fa-xmark {
     position: absolute;
     left: 96%;
@@ -95,11 +92,15 @@ input[type="file"] {
     margin-bottom: 10px;
     /* padding-bot: 8px; */
 }
+/*Error message*/
 .error-message{
-    display: none;
+    visibility: hidden;
     font-size: 0.8rem;
     font-style: italic;
     color: var(--incomplete);
+}
+.top .error-message{
+    padding-left: 10px;
 }
 /*cALENDAR*/
 .date-line {
@@ -119,7 +120,7 @@ input[type="file"] {
     justify-content: flex-end;
 }
 
-.date-line p i {
+.date-line i {
     /* padding-top: 20px;
     padding-left: 4px; */
     font-size: 12px;
@@ -259,6 +260,7 @@ input[type="file"] {
 /* CheckBox */
 .checkbox-area {
     margin-top: 24px;
+    margin-bottom: 4px;
 }
 
 .radio {
@@ -358,3 +360,56 @@ input[type="file"] {
 } */
 
 /*Forms */
+.bottom.grid {
+    row-gap: 0px;
+    column-gap: 20px;
+}
+
+.bottom>label {
+    display: block;
+    /* max-width: 370px; */
+    padding-left: 10px;
+    /* height: 50px; */
+}
+.form_control {
+    padding: 10px;
+    justify-content: space-between;
+}
+
+.form_control.grid {
+    grid-template-columns: 100px 100px 130px;
+    justify-content: space-between;
+}
+
+/* Upload Button */
+.control>span {
+    padding-left: 10px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    /* display: inline-block; */
+    padding: 4px 10px;
+    margin: 10px 0;
+    cursor: pointer;
+    height: 50px;
+    border: 0.89px solid var(--input-field-border);
+    border-radius: 9px;
+    outline: none;
+    background-color: var(--button-color);
+    color: #fff;
+}
+
+.custom-file-upload span {
+    height: 100%;
+    padding-top: 0.56rem;
+    overflow: hidden;
+    flex-wrap: nowrap;
+}
+
+.custom-file-upload i {
+    margin-right: 10px;
+}

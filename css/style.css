@@ -1,7 +1,5 @@
 body {
-    /* display: grid;
-    justify-content: center;
-    align-items: center; */
+    position: relative;
     max-width: 100vw;
     height: 100vh;
     background: rgba(254, 249, 231 , 0.6);
@@ -11,6 +9,10 @@ body {
     max-width: 2000px;
     padding: 10px 40px;
     margin: auto;
+}
+.container > .btn{
+    background-color: #1a5276;
+    font-weight: bold;
 }
 
 .container.flex {
