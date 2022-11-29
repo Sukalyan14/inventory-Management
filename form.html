@@ -17,17 +17,17 @@
 </head>
 <body>
     <div class="wrapper">
-        <i class="fa-solid fa-xmark" id="form-toggler"></i>
+        <i class="fa-solid fa-xmark" id="form-out"></i>
         <div class="top">
-            
+
             <div class="date-line flex-start">
-                <p dropdown-zone id="date-left">Date:
+                <div dropdown-zone id="date-left">Date:
                     <span>Select Date...</span>
                     <i class="fa-solid fa-chevron-down"></i>
                     <span class="error-message">Error</span>
-                </p> 
-        
-                <div class="calendar disappear" >
+                </div>
+
+                <div class="calendar disappear">
 
                     <div class="month flex text-center">
                         <i class="fas fa-angle-left prev"></i>
@@ -55,13 +55,13 @@
             <h2>Purchase Order</h2>
 
             <div class="date-line flex-end">
-                <p dropdown-zone id="date-right">Due:
+                <div dropdown-zone id="date-right">Due:
                     <span>Select Date...</span>
-                    <i class="fa-solid fa-chevron-down"></i> 
+                    <i class="fa-solid fa-chevron-down"></i>
                     <span class="error-message">Error</span>
-                </p> 
-        
-                <div class="calendar disappear" >
+                </div>
+
+                <div class="calendar disappear">
 
                     <div class="month flex text-center">
                         <i class="fas fa-angle-left prev"></i>
@@ -89,9 +89,9 @@
         </div>
         <div class="middle text-center">
             <div class="checkbox-area flex" id="checkbox-area">
-                
+
                 <label for="quote" class="radio text-center quote">
-                    
+
                     <input type="radio" name="myRadioField" class="radio_input" id="quote">
                     <div class="radio_radio"></div>
                     Quote
@@ -99,30 +99,30 @@
                 </label>
 
                 <label for="Online" class="radio text-center Online">
-                    
+
                     <input type="radio" name="myRadioField" class="radio_input" id="Online">
                     <div class="radio_radio"></div>
-                    Online 
+                    Online
                 </label>
 
                 <label for="local" class="radio text-center local">
-                    
+
                     <input type="radio" name="myRadioField" class="radio_input" id="local">
                     <div class="radio_radio"></div>
                     Local
                 </label>
 
                 <label for="International" class="radio text-center Intl">
-                    
+
                     <input type="radio" name="myRadioField" class="radio_input" id="International">
                     <div class="radio_radio"></div>
-                    Intl. 
+                    Intl.
                 </label>
             </div>
             <span class="error-message">Error</span>
         </div>
 
-            
+
         <form action="" id="po-form" enctype="multipart/form-data">
             <div class="bottom grid">
                 <div class="form_control">
@@ -141,7 +141,7 @@
                 </div>
 
                 <div class="form_control grid">
-                    
+
                     <div class="control">
                         <label for="Qty">Qty</label>
                         <input type="number" id="Qty" name="qty" placeholder="Qty" min="0" required>
@@ -165,7 +165,7 @@
             </div>
             <button class="btn">Submit</button>
         </form>
-        
+
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

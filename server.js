@@ -17,14 +17,18 @@ const upload = multer({ storage : fileStorageEngine })
 
 app.use(cors())
 
-app.get("/" , (req , res) => {
-    res.sendFile(__dirname + "/index.html")
-})
+// app.get("/" , (req , res) => {
+//     res.sendFile(__dirname + "/index.html")
+// })
 
 app.post('/purchase-order' , upload.single("P-O") , (req , res) => {
     console.log(req.body)
     console.log(req.file)
     res.send(JSON.stringify("Purchase Order Submitted"))
+})
+
+app.get('/table-info' , (req ,res) => {
+    
 })
 
 const port = 3000;

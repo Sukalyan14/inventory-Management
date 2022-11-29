@@ -326,9 +326,9 @@ const postData = async (url , payload) => {
 function error_message(element, message , flag) {
   if (flag == 1) {
     element.innerText = message
-    element.style.display = 'block'
+    element.style.visibility = 'visible'
   } else {
-    element.style.display = 'none'
+    element.style.visibility = 'hidden'
   }
 }
 
@@ -411,3 +411,19 @@ form.addEventListener("submit" , (e) => {
   
 })
 
+//Form Tggler
+const form_in = document.querySelector("#form-in");
+const form_out = document.querySelector("#form-out");
+const form_wrapper = document.querySelector("#form-wrapper");
+
+form_out.addEventListener("click" , (e) => {
+  e.preventDefault();
+  // form_wrapper.style.top = "-50%";
+  form_wrapper.classList.toggle("wrapper-appear")
+})
+
+form_in.addEventListener("click", (e) => {
+  e.preventDefault();
+  // form_wrapper.style.top = "50%";
+  form_wrapper.classList.toggle("wrapper-appear")
+})

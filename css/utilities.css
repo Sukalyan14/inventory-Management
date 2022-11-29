@@ -25,52 +25,6 @@
     line-height: 1.6;
 }
 
-/*Input scroll removal */
-input {
-    /* max-width: 370px; */
-    width: 100%;
-    margin: 10px 0;
-    height: 50px;
-    padding: 4px 10px;
-    font-size: 16px;
-    border: 0.89px solid var(--input-field-border);
-    border-radius: 9px;
-    outline: none;
-    background-color: var(--input-field-color);
-}
-
-.input:placeholder-shown {
-    color: var(--input-placeholder-color);
-}
-
-input[type='number'] {
-    -moz-appearance: textfield;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-}
-input[type=search]::-ms-clear {
-    display: none;
-    width: 0;
-    height: 0;
-}
-
-input[type=search]::-ms-reveal {
-    display: none;
-    width: 0;
-    height: 0;
-}
-
-/* clears the ‘X’ from Chrome */
-input[type="search"]::-webkit-search-decoration,
-input[type="search"]::-webkit-search-cancel-button,
-input[type="search"]::-webkit-search-results-button,
-input[type="search"]::-webkit-search-results-decoration {
-    display: none;
-}
-
 .text-center {
     text-align: center;
 }
