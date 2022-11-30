@@ -104,9 +104,9 @@ body {
 
 .search-bar {
     /* background-color: #fff; */
-    /* border-radius: 10px; */
+    border-radius: 10px;
     position: relative;
-
+    border: 1px solid var(--input-placeholder-color);
 }
 
 .search-bar input {
@@ -154,4 +154,16 @@ body {
     background-color: #Fff;
     margin: 10px 0;
     border-bottom: 1px solid #d3d3d3;
+}
+.content-table tbody tr td i{
+    color: #fff;
+    border-radius: 50%;
+    padding: 8px 10px;
+    background-color: var(--incomplete);
+    transition: transform 0.2s ease-in-out;
+}
+
+.content-table tbody tr td i:hover{
+    cursor: pointer;
+    transform: scale(1.1);
 }
