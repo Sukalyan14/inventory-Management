@@ -395,7 +395,6 @@ form.addEventListener("submit" , (e) => {
   const formdata = new FormData(form)
 
   let date_checker = checkdates();
-  console.log(date_checker)
   let order_type_checker = check_order_type(selected_radio)
 
   if(date_checker && order_type_checker){
