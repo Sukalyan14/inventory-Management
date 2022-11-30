@@ -18,7 +18,7 @@
 </head>
 <body>
     <div class="wrapper" id="form-wrapper">
-        <i class="fa-solid fa-xmark" id="form-out"></i>
+        <i class="fa-solid fa-xmark form-close" id="form-out"></i>
         <div class="top">
 
             <div class="date-line flex-start">
@@ -132,13 +132,23 @@
                 </div>
 
                 <div class="form_control">
-                    <label for="Vendor">Vendor Details</label>
-                    <input type="text" id="Vendor" name="vendor" placeholder="Vendor" required>
+                    <label for="Item-Name">Item Name</label>
+                    <input type="text" id="Item-Name" name="item" placeholder="Item Name" required>
                 </div>
 
                 <div class="form_control">
-                    <label for="Item-Name">Item Name</label>
-                    <input type="text" id="Item-Name" name="item" placeholder="Item Name" required>
+                    <label for="Vendor">Vendor Name</label>
+                    <input type="text" id="Vendor-name" name="vendor_name" placeholder="Vendor" required>
+                </div>
+
+                <div class="form_control">
+                    <label for="Vendor">Vendor Address</label>
+                    <input type="text" id="Vendor" name="vendor_addr" placeholder="Vendor" required>
+                </div>
+
+                <div class="form_control">
+                    <label for="Vendor">GSTN Number</label>
+                    <input type="text" id="Vendor" name="gstn" placeholder="Vendor" required>
                 </div>
 
                 <div class="form_control grid">
@@ -233,12 +243,15 @@
                     <th>Serial No.</th>
                     <th>Purchase Order No.</th>
                     <th>Item Name</th>
-                    <th>Vendor</th>
+                    <th>Vendor Name</th>
+                    <th>Vendor Address</th>
+                    <th>GSTN Number</th>
                     <th>Type of Order</th>
                     <th>Quantity</th>
                     <th>Price</th>
                     <th>Date of Issue</th>
                     <th>Due Date</th>
+                    <th>Delete Row</th>
             </tr>
            </thead>
            <tbody>
@@ -247,11 +260,14 @@
                     <td>741258963</td>
                     <td>Something</td>
                     <td>Someone</td>
+                    <td>SomeWhere</td>
+                    <td>Something</td>
                     <td>Quote</td>
                     <td>75</td>
                     <td>96325</td>
                     <td>7/8/22</td>
                     <td>3/9/22</td>
+                    <td><i class="fa-solid fa-xmark"></i></td>
                 </tr>
 
                 <tr>
@@ -259,11 +275,14 @@
                     <td>741258963</td>
                     <td>Something</td>
                     <td>Someone</td>
+                    <td>Somewhere</td>
+                    <td>Something</td>
                     <td>Online</td>
                     <td>75</td>
                     <td>96325</td>
                     <td>7/8/22</td>
                     <td>3/9/22</td>
+                    <td><i class="fa-solid fa-xmark"></i></td>
                 </tr>
            </tbody>
         </table>

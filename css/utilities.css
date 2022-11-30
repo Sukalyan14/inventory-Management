@@ -79,4 +79,11 @@
     display: none;
 }
 
-/*Table part*/
+.flex-start {
+    justify-content: flex-start;
+}
+
+.flex-end {
+    justify-content: flex-end;
+}
+
