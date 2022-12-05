@@ -1,9 +1,12 @@
 const express = require("express")
 const multer = require("multer")
 const cors = require("cors")
+const sql = require("mssql")
 
 const app = express();
 app.use(cors())
+
+app.use(express.static('public'))
 
 const fileStorageEngine = multer.diskStorage({
     destination: (req , file , cb) => {
@@ -13,6 +16,7 @@ const fileStorageEngine = multer.diskStorage({
         cb(null , file.originalname + "---" + Date.now())
     }
 })
+
 const upload = multer({ storage : fileStorageEngine })
 
 app.use(cors())
@@ -26,6 +30,11 @@ app.post('/purchase-order' , upload.single("P-O") , (req , res) => {
     console.log(req.file)
     res.send(JSON.stringify("Purchase Order Submitted"))
 })
+
+app.get('/quote-count', (req, res) => {
+    console.log(req.body)
+})
+
 
 app.get('/table-info' , (req ,res) => {
     
