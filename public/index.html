@@ -19,7 +19,7 @@
 <body>
     <div class="wrapper" id="form-wrapper">
         <i class="fa-solid fa-xmark form-close" id="form-out"></i>
-        <div class="top">
+        <div class="top text-center flex">
 
             <div class="date-line flex-start">
                 <div dropdown-zone id="date-left">Date:
@@ -88,7 +88,9 @@
             </div>
 
         </div>
+
         <div class="middle text-center">
+                        
             <div class="checkbox-area flex" id="checkbox-area">
 
                 <label for="quote" class="radio text-center quote">
@@ -160,7 +162,7 @@
 
                     <div class="control">
                         <label for="Price">Price</label>
-                        <input type="number" id="Price" name="price" placeholder="Price" min="0" required>
+                        <input type="number" id="Price" name="price" step=".001" placeholder="Price" min="0" required>
                     </div>
 
                     <div class="control">
@@ -176,6 +178,7 @@
                 </div>
             </div>
             <button class="btn">Submit</button>
+            <!-- <button class="btn">Reset</button> -->
         </form>
 
     </div>

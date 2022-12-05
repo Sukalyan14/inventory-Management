@@ -79,9 +79,14 @@ input[type="search"]::-webkit-search-results-decoration {
 
 .top {
     color: var(--text-color);
-    display: flex;
-    justify-content: space-between;
+    /* display: flex;
+    justify-content: space-between; */
     margin-top: 10px;
+    margin: 0 20px;
+}
+
+.top.flex{
+    justify-content: space-between;
 }
 
 .top > h2 {

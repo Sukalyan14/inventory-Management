@@ -63,14 +63,18 @@ const renderCalendar = (date_month_year, date_day) => {
     days += `<span class="prev-date">${prevLastDay - x + 1}</span>`;
   }
 
+  // for (let i = 1; i <= lastDay; i++) {
+  //   if (i === new Date().getDate() && date.getMonth() === new Date().getMonth() && date.getFullYear() === new Date().getFullYear()) {
+  //     //   days += `<div class="today"><span class="hover">${i}</span></div>`;
+  //     // days += `<span class="today date-button">${i}</span>`;
+  //   } else {
+  //     //   days += `<div><span class="hover">${i}</span></div>`;
+  //     days += `<span class="date-button">${i}</span>`;
+  //   }
+  // }
+
   for (let i = 1; i <= lastDay; i++) {
-    if (i === new Date().getDate() && date.getMonth() === new Date().getMonth() && date.getFullYear() === new Date().getFullYear()) {
-      //   days += `<div class="today"><span class="hover">${i}</span></div>`;
-      days += `<span class="today date-button">${i}</span>`;
-    } else {
-      //   days += `<div><span class="hover">${i}</span></div>`;
-      days += `<span class="date-button">${i}</span>`;
-    }
+    days += `<span class="date-button">${i}</span>`;
   }
 
   for (let j = 1; j <= nextDays; j++) {
@@ -279,6 +283,7 @@ const getData = async (url) => {
   try {
     const res = await fetch(url);
     const data = await res.json();
+    return data;
   } catch (err) {
     console.log(err);
   }
@@ -288,18 +293,15 @@ const postData = async (url, payload) => {
   try {
     const res = await fetch(url, {
       method: 'POST',
-      // mode:'cors',
-      // headers:{
-      //   'Content-type':'application/json'
-      // },
       body: payload
     })
     const data = await res.json();
-
+    return data
   } catch (err) {
     console.log(err)
   }
 }
+
 
 //PO Form
 //Outside Form
@@ -346,7 +348,6 @@ function checkdates() {
 }
 
 function checkdates_2(left, right) {
-  console.log("within Data Checker")
   let dateParts = {
     left: left.split("/"),
     right: right.split("/")
@@ -417,7 +418,7 @@ upload.addEventListener("change", (e) => {
 // let url = "http://localhost:3000/patient-register";
 form.addEventListener("submit" , (e) => {
   e.preventDefault();
-  // console.log(selected_radio)
+  
   const formdata = new FormData(form)
 
   let date_checker = checkdates();
@@ -427,11 +428,13 @@ form.addEventListener("submit" , (e) => {
     formdata.append('issue_date', date_left.innerText)
     formdata.append('due_date', date_right.innerText)
     formdata.append('type', selected_radio)
-    formdata.append("P-O" , upload.files[0])
+    formdata.append("PO_File" , upload.files[0])
 
-    const url = "http://localhost:3000/purchase-order"
-
-    const result = postData(url, formdata)
+    postData("http://localhost:3000/purchase-order", formdata).then(data => console.log(data)) //Returns a promise so it needs to be resolve if used with async await
+    // postData(url , formdata)
+    // result.then(data => {    
+    //   console.log(data)
+    // })
   }
   
 })
@@ -463,6 +466,7 @@ const delete_icon_class = "fa-solid fa-xmark delete-row";
 document.addEventListener('DOMContentLoaded' , (e) => {
   e.preventDefault();
   
+  getData("http://localhost:3000/table-info").then(data => console.log(data))
   // const quote_count = getData("http://localhost:3000/quote-count")
   // const online_count = getData("http://localhost:3000/online-count")
   // const local_count = getData("http://localhost:3000/local-count")
