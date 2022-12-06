@@ -126,6 +126,12 @@ body {
 }
 
 /*Table*/
+.table-wrapper{
+    max-height: 500px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: #58D68D;
+}
 .content-table{
     width: 100%;
     border-collapse: collapse;
@@ -138,7 +144,18 @@ body {
 .content-table thead , 
 .content-table tbody{
     margin: 20px 0;
+    /* display: block; */
+    width: 100%;
 }
+/* .content-table thead{
+    position: sticky;
+    top: 0;
+}
+
+.content-table tbody{
+    max-height: 200px;
+    overflow-y: scroll;
+} */
 .content-table thead tr{
     background-color: #1565c0;
     color: #Fff;
