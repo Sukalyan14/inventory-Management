@@ -283,6 +283,7 @@ const getData = async (url) => {
   try {
     const res = await fetch(url);
     const data = await res.json();
+    // console.log(data)
     return data;
   } catch (err) {
     console.log(err);
@@ -301,8 +302,6 @@ const postData = async (url, payload) => {
     console.log(err)
   }
 }
-
-
 //PO Form
 //Outside Form
 const date_left = document.querySelector('#date-left span')
@@ -459,17 +458,48 @@ form_in.addEventListener("click", (e) => {
 
 //Table
 const table_body = document.querySelector("#table-body")
+// console.log(table_body.previousElementSibling.children[0].children.length)
+const table_header_row_length = table_body.previousElementSibling.children[0].children.length;
 
+table_body.replaceChildren();
 //class name for delete-tablo-row
 const delete_icon_class = "fa-solid fa-xmark delete-row";
 
-document.addEventListener('DOMContentLoaded' , (e) => {
-  e.preventDefault();
+function table_render(data){
+  // console.log(data[0])
+  let td , tr;
+  tr = document.createElement('tr')
+  for( let i in data){
+    let row_data = Object.values(data[i])
+    // console.log(row_data)
+    let row = table_body.insertRow(i)
+
+    for(let x = 0 ; x < table_header_row_length ; x++){
+      // console.log(x)
+      if(x === 11){
+        const icon = document.createElement('i')
+        icon.classList.add('fa-solid' , 'fa-xmark' , 'delete-row')
+        const final_cell = row.insertCell(x)
+        final_cell.appendChild(icon)
+      } else {
+        row.insertCell(x).innerText = row_data[x]
+      }
+      
+    }
+  }
+  // tr.appendChild
+  // table_body.append(tr)
   
-  getData("http://localhost:3000/table-info").then(data => console.log(data))
-  // const quote_count = getData("http://localhost:3000/quote-count")
-  // const online_count = getData("http://localhost:3000/online-count")
-  // const local_count = getData("http://localhost:3000/local-count")
-  // const intl_count = getData("http://localhost:3000/intl-count")
-  
-})
+  // table_body.appendChild(table_row)
+}
+
+getData("http://localhost:3000/table-info").then(data => table_render(data))
+
+
+// console.log(res)
+// window.addEventListener('load' , (e) => {
+//   e.preventDefault();
+//   console.log(5)
+//   // getData("http://localhost:3000/table-info").then(data => console.log(data))
+// })
+

@@ -93,7 +93,9 @@ app.get('/table-info' , (req ,res) => {
         } else {
             
             const values = Object.values(result.recordset)
-            console.log(JSON.stringify(values))
+            // console.log(JSON.stringify(values))
+            console.log(values)
+            res.send(JSON.stringify(values))
         }
     })
 })
