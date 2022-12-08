@@ -1,12 +1,17 @@
 const express = require("express")
 const multer = require("multer")
 const cors = require("cors")
-const sql = require("mssql")
+const sql = require("mssql");
 
 const app = express();
 app.use(cors())
 
-app.use(express.static('public'))
+app.use(express.static('public')) //For showing the static page on localhost:3000
+// app.use(express.urlencoded({
+//     extended: true
+// }))   //For Barsing url encoded type
+app.use(express.text())   //For parsing text
+// app.use(express.json());   //For parsing Json data
 
 const fileStorageEngine = multer.diskStorage({
     destination: (req , file , cb) => {
@@ -73,16 +78,53 @@ app.post('/purchase-order' , upload.single("PO_File") , (req , res) => {
 })
 
 app.get('/quote-count', (req, res) => {
-    console.log(req.body)
-    let query = `SELECT COUNT(*) FROM Orders WHREE TypeOfOrder = '${quote}'`
+    
+    let query = `SELECT COUNT(*) FROM Orders WHERE TypeOfOrder = 'quote'`
     let query_res = sql.query(query , (err , result) => {
         if(err){
             throw err
         } else {
-            console.log(result.recordset)
+            const value = Object.values(result.recordset[0])
+            console.log(value[0])
         }
     })
 })
+
+// app.get('/online-count', (req, res) => {
+    
+//     let query = `SELECT COUNT(*) FROM Orders WHREE TypeOfOrder = 'Online'`
+//     let query_res = sql.query(query, (err, result) => {
+//         if (err) {
+//             throw err
+//         } else {
+//             console.log(result.recordset)
+//         }
+//     })
+// })
+
+// app.get('/local-count', (req, res) => {
+    
+//     let query = `SELECT COUNT(*) FROM Orders WHREE TypeOfOrder = 'local'`
+//     let query_res = sql.query(query, (err, result) => {
+//         if (err) {
+//             throw err
+//         } else {
+//             console.log(result.recordset)
+//         }
+//     })
+// })
+
+// app.get('/Intl-count', (req, res) => {
+    
+//     let query = `SELECT COUNT(*) FROM Orders WHREE TypeOfOrder = 'Intl'`
+//     let query_res = sql.query(query, (err, result) => {
+//         if (err) {
+//             throw err
+//         } else {
+//             console.log(result.recordset)
+//         }
+//     })
+// })
 
 
 app.get('/table-info' , (req ,res) => {
@@ -91,15 +133,30 @@ app.get('/table-info' , (req ,res) => {
         if(err){
             throw err
         } else {
-            
             const values = Object.values(result.recordset)
             // console.log(JSON.stringify(values))
-            console.log(values)
+            // console.log(values)
             res.send(JSON.stringify(values))
         }
     })
 })
 
+app.post('/delete-row' , (req ,res) => {
+    const po_num = req.body
+    // console.log(po_num)
+    let query = `DELETE FROM Orders WHERE PurchaseOrderNumber = '${po_num}'`
+    let query_res = sql.query(query , (err , result) => {
+        if(err){
+            throw err
+        } else {
+            res.send(JSON.stringify('Deleted'))
+        }
+    })
+})
+
+// app.post('/test' , (req , res) => {
+//     
+// })
 const port = 3000;
 app.listen(port, () => {
     console.log(`Server Running at ${port}`)

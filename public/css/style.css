@@ -130,12 +130,42 @@ body {
     max-height: 500px;
     overflow-y: scroll;
     overflow-x: hidden;
-    background-color: #58D68D;
+    border-radius: 10px;
+    /* background-color: #58D68D; */
 }
+.table-wrapper::-webkit-scrollbar {
+    width: 12px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+    border-radius: 10px;
+    margin-block: 0.5rem;
+    /* From https://css.glass */
+    /* background: rgba(255, 255, 255, 1); */
+    /*border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(12.2px);
+    -webkit-backdrop-filter: blur(12.2px);*/
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+    height: 4px;
+    width: 4px;
+    /* From https://css.glass */
+    background-color: rgb(230, 236, 255 , 0.4);
+    /* background-color: rgb(231, 236, 254); */
+    border-radius: 16px;
+    /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2); */
+    backdrop-filter: blur(6.4px);
+    -webkit-backdrop-filter: blur(8.4px);
+    /* border: 1px solid rgba(236, 234, 228, 0.3); */
+    border: 1px solid #e3e3e3;
+}
+
 .content-table{
     width: 100%;
-    border-collapse: collapse;
-    /* border-spacing: 0; */
+    /* border-collapse: collapse; */
+    border-spacing: 0;
     /* border-style: none; */
     border-radius: 50px;
     /* margin: 10px 0; */
@@ -147,7 +177,7 @@ body {
     /* display: block; */
     width: 100%;
 }
-/* .content-table thead{
+ .content-table thead{
     position: sticky;
     top: 0;
 }
@@ -155,9 +185,11 @@ body {
 .content-table tbody{
     max-height: 200px;
     overflow-y: scroll;
-} */
+}
 .content-table thead tr{
-    background-color: #1565c0;
+    /* background-color: #1565c0; */
+    background-color: #1a5276;
+    /* background-color: rgb(231, 236, 254); */
     color: #Fff;
     font-weight: bold;
 }
@@ -170,7 +202,7 @@ body {
 .content-table tbody tr{
     background-color: #Fff;
     margin: 10px 0;
-    border-bottom: 1px solid #d3d3d3;
+    /* border-bottom: 1px solid #d3d3d3; */
 }
 .content-table tbody tr td i{
     color: #fff;
