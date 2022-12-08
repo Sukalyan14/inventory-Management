@@ -24,6 +24,10 @@
     font-family: 'Open Sans', sans-serif;
     line-height: 1.6;
 }
+.disappear {
+    opacity: 0;
+    visibility: hidden;
+}
 
 .text-center {
     text-align: center;

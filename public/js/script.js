@@ -96,8 +96,8 @@ date_dropdown.forEach(d => {
     const current_month = current.getMonth();
     const current_year = current.getFullYear();
     
-    date.setMonth(current_month);
-    date.setFullYear(current_year);
+    date.setMonth(current_month);       //Reseting month to current month
+    date.setFullYear(current_year);   //Reseting year to current year
     // console.log(e.target)
     // console.log(e.target.parentElement.nextElementSibling)
     if(e.target.matches('[dropdown-zone]') ){
@@ -290,10 +290,11 @@ const getData = async (url) => {
   }
 }
 
-const postData = async (url, payload) => {
+const postData = async (url, payload ) => {
   try {
     const res = await fetch(url, {
       method: 'POST',
+      mode: 'cors',
       body: payload
     })
     const data = await res.json();
@@ -303,12 +304,13 @@ const postData = async (url, payload) => {
   }
 }
 //PO Form
-//Outside Form
 const date_left = document.querySelector('#date-left span')
 const date_right = document.querySelector('#date-right span')
 const check_box_area = document.querySelector("#checkbox-area")
 const upload = document.querySelector("#hiddenInput")
 const form = document.querySelector("#po-form")
+const final = document.querySelector('.final')
+
 
 let selected_radio;
 
@@ -357,8 +359,8 @@ function checkdates_2(left, right) {
   // console.log(x, y)
   if (x > y) {
     // console.log(4)
-    date_error_message(date_left.nextElementSibling.nextElementSibling, "Issue Date is after Due date", 1)
-    date_error_message(date_right.nextElementSibling.nextElementSibling, "Due Date is before Due date", 1)
+    error_message(date_left.nextElementSibling.nextElementSibling, "Issue Date is after due-date", 1)
+    error_message(date_right.nextElementSibling.nextElementSibling, "Due Date is before issue date", 1)
     return false
   } else {
     return true
@@ -429,15 +431,51 @@ form.addEventListener("submit" , (e) => {
     formdata.append('type', selected_radio)
     formdata.append("PO_File" , upload.files[0])
 
-    postData("http://localhost:3000/purchase-order", formdata).then(data => console.log(data)) //Returns a promise so it needs to be resolve if used with async await
-    // postData(url , formdata)
-    // result.then(data => {    
-    //   console.log(data)
-    // })
+    postData("http://localhost:3000/purchase-order", formdata ).then(data => {
+    if(data.includes('Exists')){
+      const icon = document.createElement('i')
+      icon.classList.add('fa-solid','fa-circle-check', 'status-message error')
+      final.appendChild(icon)
+    }  else {
+      const icon = document.createElement('i')
+      icon.classList.add('fa-solid', 'fa-circle-check', 'status-message', 'success')
+      final.appendChild(icon)
+    }
+    console.log(data.includes('Exists'))
+      
+    }) //Returns a promise so it needs to be resolve if used with async await
+    // form.reset();
+    form.reset();
+    date_right.innerText = 'Select Date...'
+    date_left.innerText = 'Select Date...'
+
+    setTimeout(() => {
+      final.children[1].remove();
+    } , 1000)
+
+    const current = new Date();
+    const current_month = current.getMonth();
+    const current_year = current.getFullYear();
+
+    date.setMonth(current_month); //Reseting to current month
+    date.setFullYear(current_year);
   }
-  
+    
 })
 
+// clear.addEventListener('click', (e) => {
+//   e.preventDefault();
+//   form.reset();
+//   date_right.innerText = 'Select Date...'
+//   date_left.innerText = 'Select Date...'
+
+//   const current = new Date();
+//   const current_month = current.getMonth();
+//   const current_year = current.getFullYear();
+
+//   date.setMonth(current_month); //Reseting to current month
+//   date.setFullYear(current_year); //Resetting to current year
+// })
 //Form Tggler
 const form_in = document.querySelector("#form-in");
 const form_out = document.querySelector("#form-out");
@@ -455,15 +493,14 @@ form_in.addEventListener("click", (e) => {
   form_wrapper.classList.toggle("wrapper-appear")
 })
 
-
-//Table
+//Table amd cards
+const tabs = document.querySelector('.tabs')
+// console.log(tabs.children[0].children[1].innerText)
 const table_body = document.querySelector("#table-body")
+const refresher = document.querySelector('#refresh')
+
 // console.log(table_body.previousElementSibling.children[0].children.length)
 const table_header_row_length = table_body.previousElementSibling.children[0].children.length;
-
-table_body.replaceChildren();
-//class name for delete-tablo-row
-const delete_icon_class = "fa-solid fa-xmark delete-row";
 
 function table_render(data){
   // console.log(data[0])
@@ -474,28 +511,54 @@ function table_render(data){
     // console.log(row_data)
     let row = table_body.insertRow(i)
 
-    for(let x = 0 ; x < table_header_row_length ; x++){
+    for(let x = 0 ; x < table_header_row_length ; x++){ //TO Get the delete button
       // console.log(x)
       if(x === 11){
         const icon = document.createElement('i')
         icon.classList.add('fa-solid' , 'fa-xmark' , 'delete-row')
         const final_cell = row.insertCell(x)
         final_cell.appendChild(icon)
-      } else {
+      } else { //For Rest of Data Cells
         row.insertCell(x).innerText = row_data[x]
       }
       
     }
   }
-  // tr.appendChild
-  // table_body.append(tr)
-  
-  // table_body.appendChild(table_row)
 }
+// getData("http://localhost:3000/table-info").then(data => table_render(data)) //Fetching Data for the table
+document.addEventListener("DOMContentLoaded", (e) => {
+  e.preventDefault();
+  table_body.replaceChildren(); //Youngling slayer in one line
+  // console.log(tabs)
+  getData("http://localhost:3000/table-info").then(data => table_render(data)) //Fetching  table
+  
+  getData("http://localhost:3000/quote-count").then(data => {
+    tabs.children[0].children[1].innerText = data
+  }) //Fetching  quote
+})
 
-getData("http://localhost:3000/table-info").then(data => table_render(data))
+refresher.addEventListener('click' , (e) => {
+  e.preventDefault()
+  getData("http://localhost:3000/table-info").then(data => table_render(data)) //Fetching  table
+})
 
+table_body.addEventListener('click' , (e) => {
+  e.preventDefault();
+  if(e.target.matches('.delete-row')){
+    let po_num = e.target.closest('tr').children[1].innerText;
+    let row = e.target.closest('tr')
+    console.log(row)
+    row.replaceChildren()
+    postData('http://localhost:3000/delete-row', po_num).then(data => console.log(data))
+  }
+})
 
+// let obj = {
+//   x: 'Hello There',
+//   y: 'Hello World', 
+//   z: 123
+// }
+// postData("http://localhost:3000/test" , JSON.stringify(obj)).then(data => console.log(data))
 // console.log(res)
 // window.addEventListener('load' , (e) => {
 //   e.preventDefault();
