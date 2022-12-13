@@ -22,9 +22,12 @@
         <div class="top text-center flex">
 
             <div class="date-line flex-start">
-                <div dropdown-zone id="date-left">Date:
-                    <span>Select Date...</span>
-                    <i class="fa-solid fa-chevron-down"></i>
+                <div id="date-left" class="text-center">
+                    <button dropdown-zone class="date-button">
+                        Date:
+                        <span>Select Date...</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
                     <span class="error-message">Error</span>
                 </div>
 
@@ -56,9 +59,12 @@
             <h2>Purchase Order</h2>
 
             <div class="date-line flex-end">
-                <div dropdown-zone id="date-right">Due:
-                    <span>Select Date...</span>
-                    <i class="fa-solid fa-chevron-down"></i>
+                <div id="date-right" class="text-center">
+                    <button dropdown-zone class="date-button">
+                        Due:
+                        <span>Select Date...</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
                     <span class="error-message">Error</span>
                 </div>
 
@@ -91,7 +97,7 @@
         <form action="" id="po-form" enctype="multipart/form-data">
         <div class="middle text-center">
                         
-            <div class="checkbox-area flex" id="checkbox-area">
+            <div class="checkbox-area flex text-center" id="checkbox-area">
 
                 <label for="quote" class="radio text-center quote">
 
@@ -200,7 +206,7 @@
 
     <section class="container flex">
         
-        <div class="tabs flex text-center">
+        <div class="tabs flex text-center" id="tabs">
 
             <div class="tab">
                 <h3>Quote</h3>
@@ -230,18 +236,160 @@
 
     </section>
 
+    <!-- Advance Search -->
+    <div class="wrapper advance-search" id="advanced-search-form">
+        <i class="fa-solid fa-xmark form-close" id="adv-form-out"></i>
+        <h2>Advanced Search</h2>
+        <form action="" id="form" class="advance-search-form grid">
+            <!-- <div class="form-area"> -->
+            <div class="form-control">
+                <label for="Purhcase Order No.">Purchase Order Number</label>
+                <input type="text" placeholder="Purchase Order Number" name="po_num" required>
+            </div>
+
+            <div class="form-control">
+                <label for="gstn-num">GSTN Number</label>
+                <input type="text" placeholder="GSTN Number" name="gstn_num" required>
+            </div>
+
+            <div class="form-control">
+                <label for="item_name">Item Number</label>
+                <input type="text" placeholder="Item Number" name="item_name" required>
+            </div>
+
+            <div class="form-control">
+                <label for="Vendor_name">Vendor Number</label>
+                <input type="text" placeholder="vendor Number" name="vendor_name" required>
+            </div>
+
+            <div class="form-control">
+                <div class="checkbox-area flex" id="advance-search-checkbox-area">
+
+                    <label for="adv-quote" class="radio text-center quote">
+
+                        <input type="radio" name="myRadioField" class="radio_input" id="adv-quote">
+                        <div class="radio_radio"></div>
+                        Quote
+                        <!-- <span>Quote</span> -->
+                    </label>
+
+                    <label for="adv-Online" class="radio text-center Online">
+
+                        <input type="radio" name="myRadioField" class="radio_input" id="adv-Online">
+                        <div class="radio_radio"></div>
+                        Online
+                    </label>
+
+                    <label for="adv-local" class="radio text-center local">
+
+                        <input type="radio" name="myRadioField" class="radio_input" id="adv-local">
+                        <div class="radio_radio"></div>
+                        Local
+                    </label>
+
+                    <label for="adv-International" class="radio text-center International">
+
+                        <input type="radio" name="myRadioField" class="radio_input" id="adv-International">
+                        <div class="radio_radio"></div>
+                        <p>Intl.</p>
+                    </label>
+
+                </div>
+            </div>
+
+            <div class="form-control flex">
+
+                <div class="date-line flex-start">
+                    <div id="date-left" class="text-center">
+                        <button dropdown-zone class="date-button">
+                            Date:
+                            <span>Select Date...</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        <span class="error-message">Error</span>
+                    </div>
+
+                    <div class="calendar disappear">
+
+                        <div class="month flex text-center">
+                            <i class="fas fa-angle-left prev"></i>
+                            <div class="date">
+                                <h2></h2>
+                            </div>
+                            <i class="fas fa-angle-right next"></i>
+                        </div>
+
+                        <div class="weekdays grid text-center">
+                            <div>Su</div>
+                            <div>Mo</div>
+                            <div>Tu</div>
+                            <div>We</div>
+                            <div>Th</div>
+                            <div>Fr</div>
+                            <div>Sa</div>
+                        </div>
+
+                        <div class="days grid text-center"></div>
+
+                    </div>
+                </div>
+
+                <div class="date-line flex-end">
+                    <div id="date-right" class="text-center">
+                        <button dropdown-zone class="date-button">
+                            Due:
+                            <span>Select Date...</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </button>
+                        <span class="error-message">Error</span>
+                    </div>
+
+                    <div class="calendar disappear">
+
+                        <div class="month flex text-center">
+                            <i class="fas fa-angle-left prev"></i>
+                            <div class="date">
+                                <h2></h2>
+                            </div>
+                            <i class="fas fa-angle-right next"></i>
+                        </div>
+
+                        <div class="weekdays grid text-center">
+                            <div>Su</div>
+                            <div>Mo</div>
+                            <div>Tu</div>
+                            <div>We</div>
+                            <div>Th</div>
+                            <div>Fr</div>
+                            <div>Sa</div>
+                        </div>
+
+                        <div class="days grid text-center"></div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- </div> -->
+            <button class="btn">Submit</button>
+        </form>
+    </div>
+    
     <section class="container">
         <div class="head flex">
             <h2 class="align-left">Orders</h2>
             <div class="search-and-refresh-and-sort">
                 <i class="fa-solid fa-arrows-rotate" id="refresh"></i>
                 <!-- <i class='bx bx-refresh bx-spin'></i> -->
-                <i class="fa-solid fa-filter"></i>
+                <i class="fa-solid fa-filter" id="search"></i>
                 
-                <div class="search-bar">
-                    <input type="search" placeholder="Search">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </div>
+                <i class="fa-solid fa-sort"></i>
+                <!-- <div class="search-bar flex">
+                    <input type="search" placeholder="Search" id="search-area">
+                    
+                    <button id="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div> -->
             </div>
             
         </div>

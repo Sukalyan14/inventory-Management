@@ -50,9 +50,9 @@ sql.connect(sqlConfig, (err) => {
 
 app.post('/purchase-order' , upload.single("PO_File") , (req , res) => {
     console.log(req.body)
-    const po_num = req.body.po_num;
+    const po_num = req.body.po_num.toUpperCase();
     let query_check = `SELECT * FROM Orders WHERE PurchaseOrderNumber = '${po_num}'`
-    let query = `INSERT INTO Orders (PurchaseOrderNumber , ItemName , VendorName , VendorAddress , GSTNnumber , TypeOfOrder , Quantity , Price , DateOfIssue , DueDate) values ('${po_num}' , '${req.body.item}', '${req.body.vendor_name}', '${req.body.vendor_addr}' , '${req.body.gstn}' ,'${req.body.type}', '${req.body.qty}' , '${req.body.price}' , '${req.body.issue_date}' , '${req.body.due_date}')`;
+    let query = `INSERT INTO Orders (PurchaseOrderNumber , ItemName , VendorName , VendorAddress , GSTNnumber , TypeOfOrder , Quantity , Price , DateOfIssue , DueDate) values ('${po_num}' , '${req.body.item}', '${req.body.vendor_name}', '${req.body.vendor_addr}' , '${req.body.gstn.toUpperCase()}' ,'${req.body.type}', '${req.body.qty}' , '${req.body.price}' , '${req.body.issue_date}' , '${req.body.due_date}')`;
     
     let query_res = sql.query(query_check , (err , result_check) => {
         if(err){
@@ -85,46 +85,53 @@ app.get('/quote-count', (req, res) => {
             throw err
         } else {
             const value = Object.values(result.recordset[0])
-            console.log(value[0])
+            // console.log(value[0])
+            res.send(JSON.stringify(value[0]))
         }
     })
 })
 
-// app.get('/online-count', (req, res) => {
-    
-//     let query = `SELECT COUNT(*) FROM Orders WHREE TypeOfOrder = 'Online'`
-//     let query_res = sql.query(query, (err, result) => {
-//         if (err) {
-//             throw err
-//         } else {
-//             console.log(result.recordset)
-//         }
-//     })
-// })
+app.get('/online-count', (req, res) => {
 
-// app.get('/local-count', (req, res) => {
-    
-//     let query = `SELECT COUNT(*) FROM Orders WHREE TypeOfOrder = 'local'`
-//     let query_res = sql.query(query, (err, result) => {
-//         if (err) {
-//             throw err
-//         } else {
-//             console.log(result.recordset)
-//         }
-//     })
-// })
+    let query = `SELECT COUNT(*) FROM Orders WHERE TypeOfOrder = 'online'`
+    let query_res = sql.query(query, (err, result) => {
+        if (err) {
+            throw err
+        } else {
+            const value = Object.values(result.recordset[0])
+            // console.log(value[0])
+            res.send(JSON.stringify(value[0]))
+        }
+    })
+})
 
-// app.get('/Intl-count', (req, res) => {
-    
-//     let query = `SELECT COUNT(*) FROM Orders WHREE TypeOfOrder = 'Intl'`
-//     let query_res = sql.query(query, (err, result) => {
-//         if (err) {
-//             throw err
-//         } else {
-//             console.log(result.recordset)
-//         }
-//     })
-// })
+app.get('/local-count', (req, res) => {
+
+    let query = `SELECT COUNT(*) FROM Orders WHERE TypeOfOrder = 'local'`
+    let query_res = sql.query(query, (err, result) => {
+        if (err) {
+            throw err
+        } else {
+            const value = Object.values(result.recordset[0])
+            // console.log(value[0])
+            res.send(JSON.stringify(value[0]))
+        }
+    })
+})
+
+app.get('/intl-count', (req, res) => {
+
+    let query = `SELECT COUNT(*) FROM Orders WHERE TypeOfOrder = 'Intl'`
+    let query_res = sql.query(query, (err, result) => {
+        if (err) {
+            throw err
+        } else {
+            const value = Object.values(result.recordset[0])
+            // console.log(value[0])
+            res.send(JSON.stringify(value[0]))
+        }
+    })
+})
 
 
 app.get('/table-info' , (req ,res) => {
@@ -154,6 +161,10 @@ app.post('/delete-row' , (req ,res) => {
     })
 })
 
+app.post('/search' , (req , res) => {
+    console.log(req.body)
+    res.send(JSON.stringify(200))
+})
 // app.post('/test' , (req , res) => {
 //     
 // })
