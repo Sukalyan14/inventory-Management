@@ -91,6 +91,7 @@ const renderCalendar = (date_month_year, date_day) => {
 date_dropdown.forEach(d => {
   d.addEventListener('click', (e)=> {
     e.preventDefault();
+    
     // date.setMonth(date.getMonth());
     const current = new Date();
     const current_month = current.getMonth();
@@ -100,37 +101,28 @@ date_dropdown.forEach(d => {
     date.setFullYear(current_year);   //Reseting year to current year
     // console.log(e.target)
     // console.log(e.target.parentElement.nextElementSibling)
-    if(e.target.matches('[dropdown-zone]') ){
 
-      // month = e.target.nextElementSibling.children.item(0).children.item(1).children.item(0);
-      month = e.target.nextElementSibling.children[0].children[1].children[0]; //Sending where specific month has to be changed
-      day = e.target.nextElementSibling.children[2]
-      // day = e.target.nextElementSibling.children.item(2);
+    if(e.target.matches('[dropdown-zone]')){
+      month = e.target.parentElement.nextElementSibling.children[0].children[1].children[0]
       
-      e.target.nextElementSibling.classList.toggle('disappear')
-      
-      // console.log(current_month)
-      // date.setMonth(date.getMonth());
-      renderCalendar(month , day);
-      
+      day = e.target.parentElement.nextElementSibling.children[2]
+
+      e.target.parentElement.nextElementSibling.classList.toggle('disappear')
+
+      renderCalendar(month , day)
     }
 
     else if(e.target.parentElement.matches('[dropdown-zone]')){
-      // console.log(2)
-      e.target.parentElement.nextElementSibling.classList.toggle('disappear');
-      // console.log(e.target.parentElement.nextElementSibling.children.item(0).children.item(1).children.item(0))
-      // console.log(e.target.parentElement.nextElementSibling.children.item(2))
+      month = e.target.parentElement.parentElement.nextElementSibling.children[0].children[1].children[0]
       
-      // month = e.target.parentElement.nextElementSibling.children.item(0).children.item(1).children.item(0);
-      month = e.target.parentElement.nextElementSibling.children[0].children[1].children[0]
-      day = e.target.parentElement.nextElementSibling.children[2]
+      day = e.target.parentElement.parentElement.nextElementSibling.children[2]
+
+      e.target.parentElement.parentElement.nextElementSibling.classList.toggle('disappear')
       
-      // date.setMonth(date.getMonth());
-      // console.log(date)
-      renderCalendar(month , day);
+      renderCalendar(month , day)
     }
+    
     // calendar.classList.toggle('disappear');
-    // || e.target.closest('[dropdown-zone]')
 
   // Do Not Use This for date select beacause this one is only triggered when the dropdown is clicked , as such date selecting function stops working after changing calendar
 
@@ -173,9 +165,9 @@ days_section.forEach(date => {
         let selected_month_number = months.indexOf(month_year[0]) + 1; //Getting Month No.
         let selected_year = month_year[1]
         
-        // console.log(e.target.closest('.date-line').children.item(0).children.item(0).innerText)
+        console.log(e.target.closest('.date-line').children[0].children[0].children[0].innerText)
 
-        e.target.closest('.date-line').children[0].children[0].innerText = `${selected_Date}/${selected_month_number}/${selected_year}`;
+        e.target.closest('.date-line').children[0].children[0].children[0].innerText = `${selected_Date}/${selected_month_number}/${selected_year}`;
       }
     e.target.closest('.calendar').classList.add('disappear')
   })
@@ -476,6 +468,7 @@ form.addEventListener("submit" , (e) => {
 //   date.setMonth(current_month); //Reseting to current month
 //   date.setFullYear(current_year); //Resetting to current year
 // })
+
 //Form Tggler
 const form_in = document.querySelector("#form-in");
 const form_out = document.querySelector("#form-out");
@@ -493,8 +486,9 @@ form_in.addEventListener("click", (e) => {
   form_wrapper.classList.toggle("wrapper-appear")
 })
 
+// 
 //Table amd cards
-const tabs = document.querySelector('.tabs')
+const tabs = document.querySelector('#tabs')
 // console.log(tabs.children[0].children[1].innerText)
 const table_body = document.querySelector("#table-body")
 const refresher = document.querySelector('#refresh')
@@ -535,11 +529,40 @@ document.addEventListener("DOMContentLoaded", (e) => {
   getData("http://localhost:3000/quote-count").then(data => {
     tabs.children[0].children[1].innerText = data
   }) //Fetching  quote
+
+  getData("http://localhost:3000/online-count").then(data => {
+    tabs.children[1].children[1].innerText = data
+  }) //Fetching  online
+
+  getData("http://localhost:3000/local-count").then(data => {
+    tabs.children[2].children[1].innerText = data
+  }) //Fetching  local
+
+  getData("http://localhost:3000/intl-count").then(data => {
+    tabs.children[3].children[1].innerText = data
+  }) //Fetching  International
 })
 
 refresher.addEventListener('click' , (e) => {
   e.preventDefault()
+  table_body.replaceChildren(); //Youngling slayer in one line
   getData("http://localhost:3000/table-info").then(data => table_render(data)) //Fetching  table
+
+  getData("http://localhost:3000/quote-count").then(data => {
+    tabs.children[0].children[1].innerText = data
+  }) //Fetching  quote
+
+  getData("http://localhost:3000/online-count").then(data => {
+    tabs.children[1].children[1].innerText = data
+  }) //Fetching  online
+
+  getData("http://localhost:3000/local-count").then(data => {
+    tabs.children[2].children[1].innerText = data
+  }) //Fetching  local
+
+  getData("http://localhost:3000/intl-count").then(data => {
+    tabs.children[3].children[1].innerText = data
+  }) //Fetching  International
 })
 
 table_body.addEventListener('click' , (e) => {
@@ -566,3 +589,18 @@ table_body.addEventListener('click' , (e) => {
 //   // getData("http://localhost:3000/table-info").then(data => console.log(data))
 // })
 
+//search
+const search = document.querySelector('#search');
+const adv_formOut = document.querySelector('#adv-form-out')
+const advanceSearchForm = document.querySelector('#advanced-search-form')
+
+search.addEventListener("click", (e) => {
+  e.preventDefault();
+  // form_wrapper.style.top = "-50%";
+  advanceSearchForm.classList.toggle("wrapper-appear")
+})
+
+adv_formOut.addEventListener('click' , (e) => {
+  e.preventDefault();
+  advanceSearchForm.classList.toggle('wrapper-appear');
+})

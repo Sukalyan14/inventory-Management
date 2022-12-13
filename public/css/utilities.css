@@ -91,3 +91,10 @@
     justify-content: flex-end;
 }
 
+.success {
+    color: var(--success);
+}
+
+.error {
+    color: var(--incomplete);
+}
