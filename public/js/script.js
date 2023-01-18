@@ -307,12 +307,14 @@ const final = document.querySelector('.final')
 let selected_radio;
 
 function error_message(element, message, flag) {
+  console.log(element)
   if (flag == 1) {
     element.innerText = message
     element.style.visibility = 'visible'
-  } else {
-    element.style.visibility = 'hidden'
-  }
+  } 
+  // else {
+  //   element.style.visibility = 'hidden'
+  // }
 }
 
 function checkdates() {
@@ -346,8 +348,8 @@ function checkdates_2(left, right) {
     right: right.split("/")
   } //Default dateObjec Format is YY/MM/DD
 
-  const x = new Date(+dateParts.left[2], dateParts.left[1] - 1, +dateParts.left[0]);
-  const y = new Date(+dateParts.right[2], dateParts.right[1] - 1, +dateParts.right[0]);
+  const x = new Date(dateParts.left[2], dateParts.left[1] - 1, dateParts.left[0]);
+  const y = new Date(dateParts.right[2], dateParts.right[1] - 1, dateParts.right[0]);
   // console.log(x, y)
   if (x > y) {
     // console.log(4)
@@ -424,7 +426,8 @@ form.addEventListener("submit" , (e) => {
     formdata.append("PO_File" , upload.files[0])
 
     postData("http://localhost:3000/purchase-order", formdata ).then(data => {
-    if(data.includes('Exists')){
+    const { msg } = data;
+    if(msg.includes('Exists')){
       const icon = document.createElement('i')
       icon.classList.add('fa-solid','fa-circle-check', 'status-message error')
       final.appendChild(icon)
@@ -433,7 +436,6 @@ form.addEventListener("submit" , (e) => {
       icon.classList.add('fa-solid', 'fa-circle-check', 'status-message', 'success')
       final.appendChild(icon)
     }
-    console.log(data.includes('Exists'))
       
     }) //Returns a promise so it needs to be resolve if used with async await
     // form.reset();
@@ -469,7 +471,7 @@ form.addEventListener("submit" , (e) => {
 //   date.setFullYear(current_year); //Resetting to current year
 // })
 
-//Form Tggler
+//Form Toggler
 const form_in = document.querySelector("#form-in");
 const form_out = document.querySelector("#form-out");
 const form_wrapper = document.querySelector("#form-wrapper");
